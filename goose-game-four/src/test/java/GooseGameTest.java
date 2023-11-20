@@ -1,5 +1,3 @@
-import net.sf.corn.httpclient.HttpForm;
-import net.sf.corn.httpclient.HttpResponse;
 import org.hamcrest.core.Is;
 import org.junit.After;
 import org.junit.Before;
@@ -7,8 +5,11 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
+import static org.eclipse.jetty.http.HttpHeader.CONTENT_TYPE;
 import static org.junit.Assert.assertThat;
 
 public class GooseGameTest {
@@ -100,23 +101,22 @@ public class GooseGameTest {
     }
 
     @Test
-    public void HttpPostTest() throws URISyntaxException, IOException {
-        HttpForm form = new HttpForm(new URI("http://localhost:4567/players/add"));
-        form.putFieldValue("name", "Pippo");
-        HttpResponse response = form.doPost();
+    public void HttpPostTest() throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
 
-        assertThat(response.getData(), Is.is("players: Pippo"));
+        HttpResponse<String> response = httpPost(client, "http://localhost:4567/players/add", "name=Pippo");
+
+        assertThat(response.body(), Is.is("players: Pippo"));
     }
 
     @Test
-    public void HttpGetTest() throws URISyntaxException, IOException {
-        HttpForm form = new HttpForm(new URI("http://localhost:4567/players/add"));
-        form.putFieldValue("name", "Pippo");
-        form.doPost();
-        form = new HttpForm(new URI("http://localhost:4567/players/Pippo/rolls"));
-        HttpResponse response = form.doGet();
+    public void HttpGetTest() throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        httpPost(client, "http://localhost:4567/players/add", "name=Pippo");
 
-        assertThat(response.getData(), Is.is("Pippo rolls 1, 2. Pippo moves from Start to 3"));
+        HttpResponse<String> rolResponse = httpGet(client, "http://localhost:4567/players/Pippo/rolls");
+
+        assertThat(rolResponse.body(), Is.is("Pippo rolls 1, 2. Pippo moves from Start to 3"));
     }
 
     @Test
@@ -126,5 +126,23 @@ public class GooseGameTest {
         String position = gooseGame.UserWrites("move Pippo 1, 1");
 
         assertThat(position, Is.is("Pippo rolls 1, 1. Pippo moves from 4 to The Bridge. Pippo jumps to 12"));
+    }
+
+    private HttpResponse<String> httpGet(HttpClient client, String url) throws IOException, InterruptedException {
+        HttpRequest diceRollsRequest = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .GET()
+                .build();
+        return client.send(diceRollsRequest, HttpResponse.BodyHandlers.ofString());
+    }
+
+    private HttpResponse<String> httpPost(HttpClient client, String url, String body) throws IOException, InterruptedException {
+        HttpRequest.BodyPublisher bodyPublisher = HttpRequest.BodyPublishers.ofString(body);
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .POST(bodyPublisher)
+                .header(CONTENT_TYPE.asString(), "application/x-www-form-urlencoded")
+                .build();
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 }
