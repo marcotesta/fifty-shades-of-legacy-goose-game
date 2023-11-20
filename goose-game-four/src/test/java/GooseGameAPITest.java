@@ -30,7 +30,7 @@ public class GooseGameAPITest {
     }
 
     @Test
-    public void HttpPostTest() throws IOException, InterruptedException {
+    public void givenNoPlayersWhenAddPlayerThenPlayerAdded() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
 
         HttpResponse<String> response = httpPost(client, "http://localhost:4567/players/add", "name=Pippo");
@@ -39,7 +39,7 @@ public class GooseGameAPITest {
     }
 
     @Test
-    public void HttpGetTest() throws IOException, InterruptedException {
+    public void givenAPlayerWhenRollDicesThenPlayerMoves() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         httpPost(client, "http://localhost:4567/players/add", "name=Pippo");
 
