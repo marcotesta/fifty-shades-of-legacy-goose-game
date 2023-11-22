@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GooseGame {
-    private IDice dice1, dice2;
+    private Dice dice1, dice2;
 
-    public GooseGame(IDice dice1, IDice dice2)
+    public GooseGame(Dice dice1, Dice dice2)
     {
         this.dice1 = dice1;
         this.dice2 = dice2;

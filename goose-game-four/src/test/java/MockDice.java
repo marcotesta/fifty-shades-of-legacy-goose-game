@@ -1,4 +1,4 @@
-public class MockDice implements IDice {
+public class MockDice implements Dice {
 
     int die;
 

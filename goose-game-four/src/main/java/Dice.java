@@ -1,3 +1,3 @@
-public interface IDice {
+public interface Dice {
     public int roll();
 }

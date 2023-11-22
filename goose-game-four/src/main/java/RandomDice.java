@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class RandomDice implements IDice {
+public class RandomDice implements Dice {
 
     @Override
     public int roll() {
