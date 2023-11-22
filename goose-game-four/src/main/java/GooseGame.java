@@ -56,14 +56,14 @@ public class GooseGame {
                     currentPlayer.position = 63 - (currentPlayer.position - 63);
                 else if (currentPlayer.position == 6)
                     currentPlayer.position += 6;
+                String startPositionDescription = getParticularPosition(player, startPosition);
+                String finalPositionDescription = getParticularPosition(player, newPosition);
+
+                return player + " rolls " + dice1Roll + ", " + dice2Roll + ". " + player
+                        + " moves from " + startPositionDescription + " to " + finalPositionDescription;
             }
         }
-
-        String startPositionDescription = getParticularPosition(player, startPosition);
-        String finalPositionDescription = getParticularPosition(player, newPosition);
-
-        return player + " rolls " + dice1Roll + ", " + dice2Roll + ". " + player
-                + " moves from " + startPositionDescription + " to " + finalPositionDescription;
+        return "No player named " + player;
     }
 
     private String getParticularPosition(String player, String position) {

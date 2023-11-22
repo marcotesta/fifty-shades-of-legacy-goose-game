@@ -137,4 +137,15 @@ public class GooseGameTest {
 
         assertThat(position, Is.is("Pippo rolls 1, 1. Pippo moves from 4 to The Bridge. Pippo jumps to 12"));
     }
+
+    @Test
+    public void givenNoPlayerWhenRoll2and2ThenError(){
+
+        dice1.die = 2;
+        dice2.die = 2;
+        String position = gooseGame.MovePlayer("Pluto");
+
+        assertThat(position, Is.is("No player named Pluto"));
+    }
+
 }
