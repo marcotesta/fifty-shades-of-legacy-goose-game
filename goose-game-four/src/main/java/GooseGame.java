@@ -46,18 +46,17 @@ public class GooseGame {
         int dice2Roll = dice2.roll();
         int move = dice1Roll + dice2Roll;
 
-        String startPosition = "", newPosition = "";
-
         for (Board currentPlayer : boards) {
             if (currentPlayer.player.equals(player)) {
-                startPosition = Integer.toString(currentPlayer.position);
-                newPosition = Integer.toString(currentPlayer.position += move);
+                int startPosition = currentPlayer.position;
+                currentPlayer.position += move;
+                int tentativePosition = currentPlayer.position;
                 if(currentPlayer.position > 63)
                     currentPlayer.position = 63 - (currentPlayer.position - 63);
                 else if (currentPlayer.position == 6)
                     currentPlayer.position += 6;
                 String startPositionDescription = getParticularPosition(player, startPosition);
-                String finalPositionDescription = getParticularPosition(player, newPosition);
+                String finalPositionDescription = getParticularPosition(player, tentativePosition);
 
                 return player + " rolls " + dice1Roll + ", " + dice2Roll + ". " + player
                         + " moves from " + startPositionDescription + " to " + finalPositionDescription;
@@ -66,25 +65,26 @@ public class GooseGame {
         return "No player named " + player;
     }
 
-    private String getParticularPosition(String player, String position) {
+    private String getParticularPosition(String player, int position) {
 
-        if(Integer.parseInt(position) > 63) {
-            position = Integer.toString(63 - (Integer.parseInt(position) - 63));
-            position = "63. " + player + " bounces! " + player + " returns to " + position;
+        String positionDescription = Integer.toString(position);
+        if(position > 63) {
+            int finalPosition = 63 - (position - 63);
+            positionDescription = "63. " + player + " bounces! " + player + " returns to " + finalPosition;
         }
         else {
             switch (position) {
-                case "0":
-                    position = "Start";
+                case 0:
+                    positionDescription = "Start";
                     break;
-                case "6":
-                    position = "The Bridge. " + player + " jumps to 12";
+                case 6:
+                    positionDescription = "The Bridge. " + player + " jumps to 12";
                     break;
-                case "63":
-                    position += ". " + player + " Wins!!";
+                case 63:
+                    positionDescription += ". " + player + " Wins!!";
                     break;
             }
         }
-        return position;
+        return positionDescription;
     }
 }
