@@ -22,75 +22,118 @@ public class GooseGameTest {
     }
     @Test
     public void givenNoPlayersWhenAddPlayerThenANewPlayerIsAdded(){
+
         String player =  gooseGame.UserWrites("add player Pippo");
+
         assertThat(player, Is.is("players: Pippo"));
     }
 
     @Test
     public void givenAPlayerWhenAddPlayerWithDifferentNameThenThereAreTwoPlayers(){
         gooseGame.UserWrites("add player Pippo");
+
         String  players =  gooseGame.UserWrites("add player Pluto");
+
         assertThat(players, Is.is("players: Pippo, Pluto"));
     }
 
     @Test
     public void givenAPlayerWhenAddPlayerWithSameNameThenNoPlayerIsAddedAndAWarningIsReturned(){
         gooseGame.UserWrites("add player Pippo");
+
         String  players =  gooseGame.UserWrites("add player Pippo");
+
         assertThat(players, Is.is("Pippo: already existing player"));
     }
 
     @Test
     public void givenPlayerAtStartWhenRoll4and2ThenPlayerMovesToPosition6AndJumpsToPosition12(){
         gooseGame.UserWrites("add player Pippo");
-        String position = gooseGame.UserWrites("move Pippo 4, 2");
+
+        dice1.die = 4;
+        dice2.die = 2;
+        String position = gooseGame.UserWrites("move Pippo");
+
         assertThat(position, Is.is("Pippo rolls 4, 2. Pippo moves from Start to The Bridge. Pippo jumps to 12"));
     }
 
     @Test
     public void givenPlayerAtStartWhenRoll2and2ThenPlayerMovesToPosition4(){
         gooseGame.UserWrites("add player Pluto");
-        String position = gooseGame.UserWrites("move Pluto 2, 2");
+
+        dice1.die = 2;
+        dice2.die = 2;
+        String position = gooseGame.UserWrites("move Pluto");
+
         assertThat(position, Is.is("Pluto rolls 2, 2. Pluto moves from Start to 4"));
     }
 
     @Test
     public void givenPlayerAtPosition5WhenRoll2and3ThenPlayerMovesToPosition10(){
         gooseGame.UserWrites("add player Pippo");
-        gooseGame.UserWrites("move Pippo 3, 2");
-        String position = gooseGame.UserWrites("move Pippo 2, 3");
+        dice1.die = 3;
+        dice2.die = 2;
+        gooseGame.UserWrites("move Pippo");
+
+        dice1.die = 2;
+        dice2.die = 3;
+        String position = gooseGame.UserWrites("move Pippo");
+
         assertThat(position, Is.is("Pippo rolls 2, 3. Pippo moves from 5 to 10"));
     }
 
     @Test
     public void givenPlayerAtPosition30WhenRoll1and2ThenPlayerMovesToPosition33AndWins(){
         gooseGame.UserWrites("add player Pippo");
-        gooseGame.UserWrites("move Pippo 30, 30");
-        String position = gooseGame.UserWrites("move Pippo 1, 2");
+        dice1.die = 30;
+        dice2.die = 30;
+        gooseGame.UserWrites("move Pippo");
+
+        dice1.die = 1;
+        dice2.die = 2;
+        String position = gooseGame.UserWrites("move Pippo");
+
         assertThat(position, Is.is("Pippo rolls 1, 2. Pippo moves from 60 to 63. Pippo Wins!!"));
     }
 
     @Test
     public void givenPlayerAtPosition30WhenRoll3and2ThenPlayerMovesToPosition33AndBounceBackToPosition31(){
         gooseGame.UserWrites("add player Pippo");
-        gooseGame.UserWrites("move Pippo 30, 30");
-        String position = gooseGame.UserWrites("move Pippo 3, 2");
+        dice1.die = 30;
+        dice2.die = 30;
+        gooseGame.UserWrites("move Pippo");
+
+        dice1.die = 3;
+        dice2.die = 2;
+        String position = gooseGame.UserWrites("move Pippo");
+
         assertThat(position, Is.is("Pippo rolls 3, 2. Pippo moves from 60 to 63. Pippo bounces! Pippo returns to 61"));
     }
 
     @Test
     public void givenPlayerAtPosition4WhenRoll1and2ThenPlayerMovesToPosition7(){
         gooseGame.UserWrites("add player Pippo");
-        gooseGame.UserWrites("move Pippo 2, 2");
+        dice1.die = 2;
+        dice2.die = 2;
+        gooseGame.UserWrites("move Pippo");
+
+        dice1.die = 1;
+        dice2.die = 2;
         String position = gooseGame.UserWrites("move Pippo");
+
         assertThat(position, Is.is("Pippo rolls 1, 2. Pippo moves from 4 to 7"));
     }
 
     @Test
     public void givenPlayerAtPosition4WhenRoll1and1ThenPlayerMovesToPosition6AndJumpsToPosition12() {
         gooseGame.UserWrites("add player Pippo");
-        gooseGame.UserWrites("move Pippo 2, 2");
-        String position = gooseGame.UserWrites("move Pippo 1, 1");
+        dice1.die = 2;
+        dice2.die = 2;
+        gooseGame.UserWrites("move Pippo");
+
+        dice1.die = 1;
+        dice2.die = 1;
+        String position = gooseGame.UserWrites("move Pippo");
 
         assertThat(position, Is.is("Pippo rolls 1, 1. Pippo moves from 4 to The Bridge. Pippo jumps to 12"));
     }
