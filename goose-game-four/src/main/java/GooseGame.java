@@ -73,16 +73,15 @@ public class GooseGame {
         }
     }
 
+    private String getParticularPosition(String player, int tentativePosition) {
 
-    private String getParticularPosition(String player, int position) {
-
-        String positionDescription = Integer.toString(position);
-        if(position > 63) {
-            int finalPosition = 63 - (position - 63);
+        String positionDescription = Integer.toString(tentativePosition);
+        if(tentativePosition > 63) {
+            int finalPosition = 63 - (tentativePosition - 63);
             positionDescription = "63. " + player + " bounces! " + player + " returns to " + finalPosition;
         }
         else {
-            switch (position) {
+            switch (tentativePosition) {
                 case 6:
                     positionDescription = "The Bridge. " + player + " jumps to 12";
                     break;
