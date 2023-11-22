@@ -56,16 +56,14 @@ public class GooseGame {
 
     public String MovePlayer(String command) {
         String[] temp = command.split(", | ");
-        if (temp.length == 2) {
-            return MovePlayer(command + " " + dice1.roll() + ", " + dice2.roll());
-        }
-        else if (temp.length == 1) {
-            return MovePlayer("move " + command + " " + dice1.roll() + ", " + dice2.roll());
+        if (temp.length == 1) {
+            return MovePlayer("move " + command );
         }
         else {
-            String[] dice = {temp[2], temp[3]};
+            int dice1Roll = dice1.roll();
+            int dice2Roll = dice2.roll();
             String player = temp[1];
-            int move = Integer.parseInt(dice[0]) + Integer.parseInt(dice[1]);
+            int move = dice1Roll + dice2Roll;
 
             String startPosition = "", newPosition = "";
 
@@ -83,7 +81,7 @@ public class GooseGame {
             startPosition = getParticularPosition(player, startPosition);
             newPosition = getParticularPosition(player, newPosition);
 
-            return player + " rolls " + dice[0] + ", " + dice[1] + ". " + player + " moves from " + startPosition + " to " + newPosition;
+            return player + " rolls " + dice1Roll + ", " + dice2Roll + ". " + player + " moves from " + startPosition + " to " + newPosition;
         }
     }
 
