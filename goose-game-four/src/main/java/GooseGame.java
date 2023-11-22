@@ -49,11 +49,11 @@ public class GooseGame {
         for (Board currentPlayer : boards) {
             if (currentPlayer.player.equals(player)) {
                 int startPosition = currentPlayer.position;
-                String startPositionDescription = getStartPositionDescription(startPosition);
                 int tentativePosition = currentPlayer.position + move;
                 currentPlayer.position = getFinalPosition(tentativePosition);
-                String finalPositionDescription = getFinalPositionDescription(player, tentativePosition, currentPlayer.position);
 
+                String startPositionDescription = getStartPositionDescription(startPosition);
+                String finalPositionDescription = getFinalPositionDescription(player, tentativePosition, currentPlayer.position);
                 return player + " rolls " + dice1Roll + ", " + dice2Roll + ". " + player
                         + " moves from " + startPositionDescription + " to " + finalPositionDescription;
             }
