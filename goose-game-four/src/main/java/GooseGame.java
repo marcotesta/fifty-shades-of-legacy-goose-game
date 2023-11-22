@@ -49,11 +49,10 @@ public class GooseGame {
         for (Board currentPlayer : boards) {
             if (currentPlayer.player.equals(player)) {
                 int startPosition = currentPlayer.position;
-                currentPlayer.position += move;
-                int tentativePosition = currentPlayer.position;
-                if(currentPlayer.position > 63)
+                int tentativePosition = currentPlayer.position += move;
+                if(tentativePosition > 63)
                     currentPlayer.position = 63 - (currentPlayer.position - 63);
-                else if (currentPlayer.position == 6)
+                else if (tentativePosition == 6)
                     currentPlayer.position += 6;
                 String startPositionDescription = getParticularPosition(player, startPosition);
                 String finalPositionDescription = getParticularPosition(player, tentativePosition);
