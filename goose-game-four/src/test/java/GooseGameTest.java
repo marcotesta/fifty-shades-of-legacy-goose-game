@@ -43,16 +43,13 @@ public class GooseGameTest {
     @Test
     public void givenPlayerAtStartWhenRoll4and2ThenPlayerMovesToPosition6AndJumpsToPosition12(){
         gooseGame.UserWrites("add player Pippo");
-        gooseGame.UserWrites("add player Pluto");
         String position = gooseGame.UserWrites("move Pippo 4, 2");
         assertThat(position, Is.is("Pippo rolls 4, 2. Pippo moves from Start to The Bridge. Pippo jumps to 12"));
     }
 
     @Test
     public void givenPlayerAtStartWhenRoll2and2ThenPlayerMovesToPosition4(){
-        gooseGame.UserWrites("add player Pippo");
         gooseGame.UserWrites("add player Pluto");
-        gooseGame.UserWrites("move Pippo 4, 2");
         String position = gooseGame.UserWrites("move Pluto 2, 2");
         assertThat(position, Is.is("Pluto rolls 2, 2. Pluto moves from Start to 4"));
     }
@@ -60,9 +57,7 @@ public class GooseGameTest {
     @Test
     public void givenPlayerAtPosition5WhenRoll2and3ThenPlayerMovesToPosition10(){
         gooseGame.UserWrites("add player Pippo");
-        gooseGame.UserWrites("add player Pluto");
         gooseGame.UserWrites("move Pippo 3, 2");
-        gooseGame.UserWrites("move Pluto 2, 2");
         String position = gooseGame.UserWrites("move Pippo 2, 3");
         assertThat(position, Is.is("Pippo rolls 2, 3. Pippo moves from 5 to 10"));
     }
