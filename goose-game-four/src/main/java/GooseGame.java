@@ -2,15 +2,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GooseGame {
-    private Dice dice1, dice2;
+    private final Dice dice1, dice2;
+
+    private final List<Board> boards = new ArrayList<>();
 
     public GooseGame(Dice dice1, Dice dice2)
     {
         this.dice1 = dice1;
         this.dice2 = dice2;
     }
-
-    private List<Board> boards = new ArrayList<>();
 
     public String UserWrites(String input) {
         String command = input.split(" ")[0];
