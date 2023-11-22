@@ -55,7 +55,7 @@ public class GooseGame {
     }
 
     public String MovePlayer(String command) {
-        String[] temp = command.split(", | ");
+        String[] temp = command.split(" ");
         if (temp.length == 1) {
             return MovePlayer("move " + command );
         }
