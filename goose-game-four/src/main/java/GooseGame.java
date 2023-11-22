@@ -41,35 +41,28 @@ public class GooseGame {
         return false;
     }
 
-    public String MovePlayer(String command) {
-        String[] temp = command.split(" ");
-        if (temp.length == 1) {
-            return MovePlayer("move " + command );
-        }
-        else {
-            int dice1Roll = dice1.roll();
-            int dice2Roll = dice2.roll();
-            String player = temp[1];
-            int move = dice1Roll + dice2Roll;
+    public String MovePlayer(String player) {
+        int dice1Roll = dice1.roll();
+        int dice2Roll = dice2.roll();
+        int move = dice1Roll + dice2Roll;
 
-            String startPosition = "", newPosition = "";
+        String startPosition = "", newPosition = "";
 
-            for (Board currentPlayer : boards) {
-                if (currentPlayer.player.equals(player)) {
-                    startPosition = Integer.toString(currentPlayer.position);
-                    newPosition = Integer.toString(currentPlayer.position += move);
-                    if(currentPlayer.position > 63)
-                        currentPlayer.position = 63 - (currentPlayer.position - 63);
-                    else if (currentPlayer.position == 6)
-                        currentPlayer.position += 6;
-                }
+        for (Board currentPlayer : boards) {
+            if (currentPlayer.player.equals(player)) {
+                startPosition = Integer.toString(currentPlayer.position);
+                newPosition = Integer.toString(currentPlayer.position += move);
+                if(currentPlayer.position > 63)
+                    currentPlayer.position = 63 - (currentPlayer.position - 63);
+                else if (currentPlayer.position == 6)
+                    currentPlayer.position += 6;
             }
-
-            startPosition = getParticularPosition(player, startPosition);
-            newPosition = getParticularPosition(player, newPosition);
-
-            return player + " rolls " + dice1Roll + ", " + dice2Roll + ". " + player + " moves from " + startPosition + " to " + newPosition;
         }
+
+        startPosition = getParticularPosition(player, startPosition);
+        newPosition = getParticularPosition(player, newPosition);
+
+        return player + " rolls " + dice1Roll + ", " + dice2Roll + ". " + player + " moves from " + startPosition + " to " + newPosition;
     }
 
     private String getParticularPosition(String player, String position) {
