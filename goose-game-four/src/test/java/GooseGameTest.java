@@ -82,7 +82,6 @@ public class GooseGameTest {
 
     @Test
     public void AutomaticDicePlayerTest(){
-        GooseGame gooseGame = new GooseGame (new MockDice(1), new MockDice(2));
         gooseGame.UserWrites("add player Pippo");
         gooseGame.UserWrites("move Pippo 2, 2");
         String position = gooseGame.UserWrites("move Pippo");
