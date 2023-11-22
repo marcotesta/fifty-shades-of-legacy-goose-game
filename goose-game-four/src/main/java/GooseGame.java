@@ -12,15 +12,6 @@ public class GooseGame {
         this.dice2 = dice2;
     }
 
-    public String UserWrites(String input) {
-        String command = input.split(" ")[0];
-
-        if (command.equals("add"))
-            return AddPlayer(input.split(" ")[2]);
-        else
-            return MovePlayer(input);
-    }
-
     public String AddPlayer(String player) {
 
         if (IsPlayerAlreadyPresent(player))
