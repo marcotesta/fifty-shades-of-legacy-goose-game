@@ -45,17 +45,21 @@ public class GooseGame {
 
         for (Board currentPlayer : boards) {
             if (currentPlayer.player.equals(player)) {
-                int startPosition = currentPlayer.position;
-                int tentativePosition = getTentativePosition(currentPlayer.position, dice1.roll(), dice2.roll());
-                currentPlayer.position = getFinalPosition(tentativePosition);
-
-                String startPositionDescription = getStartPositionDescription(startPosition);
-                String finalPositionDescription = getFinalPositionDescription(player, tentativePosition, currentPlayer.position);
-                return player + " rolls " + dice1.roll() + ", " + dice2.roll() + ". " + player
-                        + " moves from " + startPositionDescription + " to " + finalPositionDescription;
+                return movePlayer(currentPlayer);
             }
         }
         return "No player named " + player;
+    }
+
+    private String movePlayer(Board currentPlayer) {
+        int startPosition = currentPlayer.position;
+        int tentativePosition = getTentativePosition(currentPlayer.position, dice1.roll(), dice2.roll());
+        currentPlayer.position = getFinalPosition(tentativePosition);
+
+        String startPositionDescription = getStartPositionDescription(startPosition);
+        String finalPositionDescription = getFinalPositionDescription(currentPlayer.player, tentativePosition, currentPlayer.position);
+        return currentPlayer.player + " rolls " + dice1.roll() + ", " + dice2.roll() + ". " + currentPlayer.player
+                + " moves from " + startPositionDescription + " to " + finalPositionDescription;
     }
 
     private int getTentativePosition(int position, int dice1Roll, int dice2Roll) {
