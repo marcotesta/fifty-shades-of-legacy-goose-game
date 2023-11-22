@@ -52,7 +52,7 @@ public class GooseGame {
                 String startPositionDescription = getStartPositionDescription(startPosition);
                 int tentativePosition = currentPlayer.position += move;
                 if(tentativePosition > 63)
-                    currentPlayer.position = 63 - (currentPlayer.position - 63);
+                    currentPlayer.position = 63 - (tentativePosition - 63);
                 else if (tentativePosition == 6)
                     currentPlayer.position += 6;
                 String finalPositionDescription = getParticularPosition(player, tentativePosition);
