@@ -10,10 +10,6 @@ public class GooseGame {
         this.dice2 = dice2;
     }
 
-    public GooseGame()
-    {
-    }
-
     private List<Board> boards = new ArrayList<>();
 
     public String UserWrites(String input) {
