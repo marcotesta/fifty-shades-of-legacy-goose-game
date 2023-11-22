@@ -59,10 +59,11 @@ public class GooseGame {
             }
         }
 
-        startPosition = getParticularPosition(player, startPosition);
-        newPosition = getParticularPosition(player, newPosition);
+        String startPositionDescription = getParticularPosition(player, startPosition);
+        String finalPositionDescription = getParticularPosition(player, newPosition);
 
-        return player + " rolls " + dice1Roll + ", " + dice2Roll + ". " + player + " moves from " + startPosition + " to " + newPosition;
+        return player + " rolls " + dice1Roll + ", " + dice2Roll + ". " + player
+                + " moves from " + startPositionDescription + " to " + finalPositionDescription;
     }
 
     private String getParticularPosition(String player, String position) {
