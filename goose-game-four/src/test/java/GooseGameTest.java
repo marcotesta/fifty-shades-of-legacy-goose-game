@@ -8,8 +8,8 @@ import static org.junit.Assert.assertThat;
 public class GooseGameTest {
 
     GooseGame gooseGame;
-    IDice dice1 = new MockDice(1);
-    IDice dice2 = new MockDice(2);
+    MockDice dice1 = new MockDice(1);
+    MockDice dice2 = new MockDice(2);
 
 
     @Before

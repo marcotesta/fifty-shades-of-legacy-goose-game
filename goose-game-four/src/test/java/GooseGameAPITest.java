@@ -15,11 +15,14 @@ import static org.junit.Assert.assertThat;
 public class GooseGameAPITest {
 
     GooseGame gooseGame;
+    MockDice dice1 = new MockDice(1);
+    MockDice dice2 = new MockDice(2);
+
     private ApplicationServer server;
 
     @Before
     public void InstantiateGooseGame() throws Exception {
-        gooseGame  = new GooseGame(new MockDice(1), new MockDice(2));
+        gooseGame  = new GooseGame(dice1, dice2);
         server = new ApplicationServer(4567, new GooseGameApplication(gooseGame));
         server.start();
     }
