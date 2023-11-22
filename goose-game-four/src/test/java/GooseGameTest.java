@@ -8,37 +8,40 @@ import static org.junit.Assert.assertThat;
 public class GooseGameTest {
 
     GooseGame gooseGame;
+    IDice dice1 = new MockDice(1);
+    IDice dice2 = new MockDice(2);
+
 
     @Before
     public void InstantiateGooseGame() {
-        gooseGame  = new GooseGame(new MockDice(1), new MockDice(2));
+        gooseGame  = new GooseGame(dice1, dice2);
     }
 
     @After
     public void after() {
     }
     @Test
-    public void AddPlayerTest(){
+    public void givenNoPlayersWhenAddPlayerThenANewPlayerIsAdded(){
         String player =  gooseGame.UserWrites("add player Pippo");
         assertThat(player, Is.is("players: Pippo"));
     }
 
     @Test
-    public void AddPlayersTest(){
+    public void givenAPlayerWhenAddPlayerWithDifferentNameThenThereAreTwoPlayers(){
         gooseGame.UserWrites("add player Pippo");
         String  players =  gooseGame.UserWrites("add player Pluto");
         assertThat(players, Is.is("players: Pippo, Pluto"));
     }
 
     @Test
-    public void AddDuplicatePlayerTest(){
+    public void givenAPlayerWhenAddPlayerWithSameNameThenNoPlayerIsAddedAndAWarningIsReturned(){
         gooseGame.UserWrites("add player Pippo");
         String  players =  gooseGame.UserWrites("add player Pippo");
         assertThat(players, Is.is("Pippo: already existing player"));
     }
 
     @Test
-    public void MovePlayerTest(){
+    public void givenPlayerAtStartWhenRoll4and2ThenPlayerMovesToPosition6AndJumpsToPosition12(){
         gooseGame.UserWrites("add player Pippo");
         gooseGame.UserWrites("add player Pluto");
         String position = gooseGame.UserWrites("move Pippo 4, 2");
@@ -46,7 +49,7 @@ public class GooseGameTest {
     }
 
     @Test
-    public void Move2PlayerTest(){
+    public void givenPlayerAtStartWhenRoll2and2ThenPlayerMovesToPosition4(){
         gooseGame.UserWrites("add player Pippo");
         gooseGame.UserWrites("add player Pluto");
         gooseGame.UserWrites("move Pippo 4, 2");
@@ -55,7 +58,7 @@ public class GooseGameTest {
     }
 
     @Test
-    public void Move3PlayerTest(){
+    public void givenPlayerAtPosition5WhenRoll2and3ThenPlayerMovesToPosition10(){
         gooseGame.UserWrites("add player Pippo");
         gooseGame.UserWrites("add player Pluto");
         gooseGame.UserWrites("move Pippo 3, 2");
@@ -65,7 +68,7 @@ public class GooseGameTest {
     }
 
     @Test
-    public void WinPlayerTest(){
+    public void givenPlayerAtPosition30WhenRoll1and2ThenPlayerMovesToPosition33AndWins(){
         gooseGame.UserWrites("add player Pippo");
         gooseGame.UserWrites("move Pippo 30, 30");
         String position = gooseGame.UserWrites("move Pippo 1, 2");
@@ -73,7 +76,7 @@ public class GooseGameTest {
     }
 
     @Test
-    public void BouncePlayerTest(){
+    public void givenPlayerAtPosition30WhenRoll3and2ThenPlayerMovesToPosition33AndBounceBackToPosition31(){
         gooseGame.UserWrites("add player Pippo");
         gooseGame.UserWrites("move Pippo 30, 30");
         String position = gooseGame.UserWrites("move Pippo 3, 2");
@@ -81,7 +84,7 @@ public class GooseGameTest {
     }
 
     @Test
-    public void AutomaticDicePlayerTest(){
+    public void givenPlayerAtPosition4WhenRoll1and2ThenPlayerMovesToPosition7(){
         gooseGame.UserWrites("add player Pippo");
         gooseGame.UserWrites("move Pippo 2, 2");
         String position = gooseGame.UserWrites("move Pippo");
@@ -89,7 +92,7 @@ public class GooseGameTest {
     }
 
     @Test
-    public void TheBridgeTest() {
+    public void givenPlayerAtPosition4WhenRoll1and1ThenPlayerMovesToPosition6AndJumpsToPosition12() {
         gooseGame.UserWrites("add player Pippo");
         gooseGame.UserWrites("move Pippo 2, 2");
         String position = gooseGame.UserWrites("move Pippo 1, 1");
