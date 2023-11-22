@@ -55,7 +55,7 @@ public class GooseGame {
                     currentPlayer.position = 63 - (tentativePosition - 63);
                 else if (tentativePosition == 6)
                     currentPlayer.position += 6;
-                String finalPositionDescription = getParticularPosition(player, tentativePosition);
+                String finalPositionDescription = getParticularPosition(player, tentativePosition, currentPlayer.position);
 
                 return player + " rolls " + dice1Roll + ", " + dice2Roll + ". " + player
                         + " moves from " + startPositionDescription + " to " + finalPositionDescription;
@@ -73,17 +73,16 @@ public class GooseGame {
         }
     }
 
-    private String getParticularPosition(String player, int tentativePosition) {
+    private String getParticularPosition(String player, int tentativePosition, int finalPosition) {
 
         String positionDescription = Integer.toString(tentativePosition);
         if(tentativePosition > 63) {
-            int finalPosition = 63 - (tentativePosition - 63);
             positionDescription = "63. " + player + " bounces! " + player + " returns to " + finalPosition;
         }
         else {
             switch (tentativePosition) {
                 case 6:
-                    positionDescription = "The Bridge. " + player + " jumps to 12";
+                    positionDescription = "The Bridge. " + player + " jumps to " + finalPosition;
                     break;
                 case 63:
                     positionDescription += ". " + player + " Wins!!";
