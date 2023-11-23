@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class GooseGame {
     private final Dice dice1, dice2;
@@ -34,21 +35,17 @@ public class GooseGame {
     }
 
     private boolean IsPlayerAlreadyPresent(String newPlayer) {
-        for (Board currentPlayer : boards) {
-            if (currentPlayer.player.equals(newPlayer))
-                return true;
-        }
-        return false;
+        return findPlayer(newPlayer).isPresent();
     }
 
     public String MovePlayer(String player) {
+        return findPlayer(player)
+                .map(this::movePlayer)
+                .orElse("No player named " + player);
+    }
 
-        for (Board currentPlayer : boards) {
-            if (currentPlayer.player.equals(player)) {
-                return movePlayer(currentPlayer);
-            }
-        }
-        return "No player named " + player;
+    private Optional<Board> findPlayer(String player) {
+        return boards.stream().filter(currentPlayer-> currentPlayer.player.equals(player)).findAny();
     }
 
     private String movePlayer(Board currentPlayer) {
