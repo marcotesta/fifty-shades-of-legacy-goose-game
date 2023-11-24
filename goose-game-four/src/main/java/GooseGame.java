@@ -58,6 +58,13 @@ public class GooseGame {
         return currentPlayer.player + " rolls " + dice1.roll() + ", " + dice2.roll() + ". " + currentPlayer.player
                 + " moves from " + startPositionDescription + " to " + finalPositionDescription;
     }
+    private String getStartPositionDescription(int position) {
+        if (position == 0) {
+            return "Start";
+        } else {
+            return Integer.toString(position);
+        }
+    }
 
     private int getTentativePosition(int position, int dice1Roll, int dice2Roll) {
         return position + dice1Roll + dice2Roll;
@@ -70,14 +77,6 @@ public class GooseGame {
             return tentativePosition + 6;
         else
             return tentativePosition;
-    }
-
-    private String getStartPositionDescription(int position) {
-        if (position == 0) {
-            return "Start";
-        } else {
-            return Integer.toString(position);
-        }
     }
 
     private String getFinalPositionDescription(String player, int tentativePosition, int finalPosition) {
