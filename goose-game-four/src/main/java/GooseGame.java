@@ -14,12 +14,9 @@ public class GooseGame {
     }
 
     public String AddPlayer(String player) {
-
         if (IsPlayerAlreadyPresent(player))
             return player + ": already existing player";
-
         boards.add(new Board(player));
-
         return getPlayersName();
     }
 
@@ -30,7 +27,6 @@ public class GooseGame {
                 output += ", ";
             output += currentPlayer.player;
         }
-
         return "players: " + output;
     }
 
@@ -52,7 +48,6 @@ public class GooseGame {
         int startPosition = currentPlayer.position;
         int tentativePosition = getTentativePosition(currentPlayer.position, dice1.roll(), dice2.roll());
         currentPlayer.position = getFinalPosition(tentativePosition);
-
         String startPositionDescription = getStartPositionDescription(startPosition);
         String finalPositionDescription = getFinalPositionDescription(currentPlayer.player, tentativePosition, currentPlayer.position);
         return currentPlayer.player + " rolls " + dice1.roll() + ", " + dice2.roll() + ". " + currentPlayer.player
