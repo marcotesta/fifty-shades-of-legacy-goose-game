@@ -75,25 +75,22 @@ public class GooseGame {
             return 63 - (tentativePosition - 63);
         else if (tentativePosition == 6)
             return tentativePosition + 6;
+        else if (tentativePosition == 63)
+            return tentativePosition;
         else
             return tentativePosition;
     }
 
     private String getFinalPositionDescription(String player, int tentativePosition, int finalPosition) {
-
-        String positionDescription = Integer.toString(tentativePosition);
+        String positionDescription = "";
         if(tentativePosition > 63) {
             positionDescription = "63. " + player + " bounces! " + player + " returns to " + finalPosition;
-        }
-        else {
-            switch (tentativePosition) {
-                case 6:
-                    positionDescription = "The Bridge. " + player + " jumps to " + finalPosition;
-                    break;
-                case 63:
-                    positionDescription += ". " + player + " Wins!!";
-                    break;
-            }
+        } else if (tentativePosition == 6) {
+            positionDescription = "The Bridge. " + player + " jumps to " + finalPosition;
+        } else if (tentativePosition == 63) {
+            positionDescription = finalPosition + ". " + player + " Wins!!";
+        } else {
+            positionDescription = Integer.toString(finalPosition);
         }
         return positionDescription;
     }
