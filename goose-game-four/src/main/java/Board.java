@@ -1,10 +1,10 @@
 public class Board {
-    public String player;
+    public String name;
     public int position;
 
 
-    public Board(String player)
+    public Board(String name)
     {
-        this.player = player;
+        this.name = name;
     }
 }

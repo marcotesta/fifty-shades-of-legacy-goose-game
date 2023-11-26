@@ -25,7 +25,7 @@ public class GooseGame {
         for (Board currentPlayer : boards) {
             if (!output.isEmpty())
                 output += ", ";
-            output += currentPlayer.player;
+            output += currentPlayer.name;
         }
         return "players: " + output;
     }
@@ -41,7 +41,7 @@ public class GooseGame {
     }
 
     private Optional<Board> findPlayer(String player) {
-        return boards.stream().filter(currentPlayer-> currentPlayer.player.equals(player)).findAny();
+        return boards.stream().filter(currentPlayer-> currentPlayer.name.equals(player)).findAny();
     }
 
     private String movePlayer(Board currentPlayer) {
@@ -52,8 +52,8 @@ public class GooseGame {
         int finalPosition = tentativePosition.getFinalPosition();
         currentPlayer.position = finalPosition;
         String startPositionDescription = getStartPositionDescription(startPosition);
-        String finalPositionDescription = tentativePosition.getFinalPositionDescription(currentPlayer.player, finalPosition);
-        return currentPlayer.player + " rolls " + dice1.getValue() + ", " + dice2.getValue() + ". " + currentPlayer.player
+        String finalPositionDescription = tentativePosition.getFinalPositionDescription(currentPlayer.name, finalPosition);
+        return currentPlayer.name + " rolls " + dice1.getValue() + ", " + dice2.getValue() + ". " + currentPlayer.name
                 + " moves from " + startPositionDescription + " to " + finalPositionDescription;
     }
     private String getStartPositionDescription(int position) {
