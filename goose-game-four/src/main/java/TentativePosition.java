@@ -14,7 +14,7 @@ public class TentativePosition {
         else if (tentativePosition == 63)
             return new EndTentativePosition(tentativePosition);
         else
-            return new TentativePosition(tentativePosition);
+            return new OrdinaryTentativePosition(tentativePosition);
     }
 
     public int getFinalPosition() {
