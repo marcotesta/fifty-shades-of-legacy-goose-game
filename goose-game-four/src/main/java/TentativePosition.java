@@ -12,7 +12,7 @@ public class TentativePosition {
         else if (tentativePosition == 6)
             return new BridgeTentativePosition(tentativePosition);
         else if (tentativePosition == 63)
-            return new TentativePosition(tentativePosition);
+            return new EndTentativePosition(tentativePosition);
         else
             return new TentativePosition(tentativePosition);
     }
