@@ -66,12 +66,12 @@ public class GooseGame {
     }
 
     private int getFinalPosition(int tentativePosition) {
-        TentativePosition position = new TentativePosition(tentativePosition);
+        TentativePosition position = TentativePosition.create(tentativePosition);
         return position.getFinalPosition();
     }
 
     private String getFinalPositionDescription(String player, int tentativePosition, int finalPosition) {
-        TentativePosition position = new TentativePosition(tentativePosition);
+        TentativePosition position = TentativePosition.create(tentativePosition);
         return position.getFinalPositionDescription(player, finalPosition);
     }
 }

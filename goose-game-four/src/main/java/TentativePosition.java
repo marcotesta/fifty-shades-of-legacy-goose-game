@@ -2,8 +2,12 @@ public class TentativePosition {
 
     private final int tentativePosition;
 
-    public TentativePosition(int tentativePosition) {
+    protected TentativePosition(int tentativePosition) {
         this.tentativePosition = tentativePosition;
+    }
+
+    static TentativePosition create(int tentativePosition) {
+        return new TentativePosition(tentativePosition);
     }
 
     public int getFinalPosition() {
