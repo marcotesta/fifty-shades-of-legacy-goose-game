@@ -14,11 +14,15 @@ public class MockDice implements Dice {
     }
 
     @Override
-    public int roll() {
+    public void roll() {
         if (this.alreadyRolled) {
             throw new RuntimeException("You cannot call method roll twice");
         }
         this.alreadyRolled = true;
+    }
+
+    @Override
+    public int getValue() {
         return this.value;
     }
 }

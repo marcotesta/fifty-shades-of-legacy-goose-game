@@ -1,3 +1,5 @@
 public interface Dice {
-    public int roll();
+    void roll();
+
+    int getValue();
 }
