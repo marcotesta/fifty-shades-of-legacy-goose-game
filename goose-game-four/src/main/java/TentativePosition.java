@@ -1,29 +1,29 @@
 public class TentativePosition {
 
-    private final int position;
+    private final int tentativePosition;
 
-    public TentativePosition(int position) {
-        this.position = position;
+    public TentativePosition(int tentativePosition) {
+        this.tentativePosition = tentativePosition;
     }
 
     public int getFinalPosition() {
-        if (position > 63)
-            return 63 - (position - 63);
-        else if (position == 6)
-            return position + 6;
-        else if (position == 63)
-            return position;
+        if (tentativePosition > 63)
+            return 63 - (tentativePosition - 63);
+        else if (tentativePosition == 6)
+            return tentativePosition + 6;
+        else if (tentativePosition == 63)
+            return tentativePosition;
         else
-            return position;
+            return tentativePosition;
     }
 
     public String getFinalPositionDescription(String player, int finalPosition) {
-        String positionDescription = "";
-        if(position > 63) {
+        String positionDescription;
+        if(tentativePosition > 63) {
             positionDescription = "63. " + player + " bounces! " + player + " returns to " + finalPosition;
-        } else if (position == 6) {
+        } else if (tentativePosition == 6) {
             positionDescription = "The Bridge. " + player + " jumps to " + finalPosition;
-        } else if (position == 63) {
+        } else if (tentativePosition == 63) {
             positionDescription = finalPosition + ". " + player + " Wins!!";
         } else {
             positionDescription = Integer.toString(finalPosition);
