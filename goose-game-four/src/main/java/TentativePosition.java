@@ -10,7 +10,7 @@ public class TentativePosition {
         if (tentativePosition > 63)
             return new BouncingTentativePosition(tentativePosition);
         else if (tentativePosition == 6)
-            return new TentativePosition(tentativePosition);
+            return new BridgeTentativePosition(tentativePosition);
         else if (tentativePosition == 63)
             return new TentativePosition(tentativePosition);
         else
