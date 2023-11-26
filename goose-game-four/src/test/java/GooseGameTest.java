@@ -50,8 +50,8 @@ public class GooseGameTest {
     public void givenPlayerAtStartWhenRoll4and2ThenPlayerMovesToPosition6AndJumpsToPosition12(){
         gooseGame.AddPlayer("Pippo");
 
-        dice1.die = 4;
-        dice2.die = 2;
+        dice1.setValue(4);
+        dice2.setValue(2);
         String position = gooseGame.MovePlayer("Pippo");
 
         assertThat(position, Is.is("Pippo rolls 4, 2. Pippo moves from Start to The Bridge. Pippo jumps to 12"));
@@ -61,8 +61,8 @@ public class GooseGameTest {
     public void givenPlayerAtStartWhenRoll2and2ThenPlayerMovesToPosition4(){
         gooseGame.AddPlayer("Pluto");
 
-        dice1.die = 2;
-        dice2.die = 2;
+        dice1.setValue(2);
+        dice2.setValue(2);
         String position = gooseGame.MovePlayer("Pluto");
 
         assertThat(position, Is.is("Pluto rolls 2, 2. Pluto moves from Start to 4"));
@@ -71,12 +71,12 @@ public class GooseGameTest {
     @Test
     public void givenPlayerAtPosition5WhenRoll2and3ThenPlayerMovesToPosition10(){
         gooseGame.AddPlayer("Pippo");
-        dice1.die = 3;
-        dice2.die = 2;
+        dice1.setValue(3);
+        dice2.setValue(2);
         gooseGame.MovePlayer("Pippo");
 
-        dice1.die = 2;
-        dice2.die = 3;
+        dice1.setValue(2);
+        dice2.setValue(3);
         String position = gooseGame.MovePlayer("Pippo");
 
         assertThat(position, Is.is("Pippo rolls 2, 3. Pippo moves from 5 to 10"));
@@ -85,12 +85,12 @@ public class GooseGameTest {
     @Test
     public void givenPlayerAtPosition30WhenRoll1and2ThenPlayerMovesToPosition33AndWins(){
         gooseGame.AddPlayer("Pippo");
-        dice1.die = 30;
-        dice2.die = 30;
+        dice1.setValue(30);
+        dice2.setValue(30);
         gooseGame.MovePlayer("Pippo");
 
-        dice1.die = 1;
-        dice2.die = 2;
+        dice1.setValue(1);
+        dice2.setValue(2);
         String position = gooseGame.MovePlayer("Pippo");
 
         assertThat(position, Is.is("Pippo rolls 1, 2. Pippo moves from 60 to 63. Pippo Wins!!"));
@@ -99,12 +99,12 @@ public class GooseGameTest {
     @Test
     public void givenPlayerAtPosition30WhenRoll3and2ThenPlayerMovesToPosition33AndBounceBackToPosition31(){
         gooseGame.AddPlayer("Pippo");
-        dice1.die = 30;
-        dice2.die = 30;
+        dice1.setValue(30);
+        dice2.setValue(30);
         gooseGame.MovePlayer("Pippo");
 
-        dice1.die = 3;
-        dice2.die = 2;
+        dice1.setValue(3);
+        dice2.setValue(2);
         String position = gooseGame.MovePlayer("Pippo");
 
         assertThat(position, Is.is("Pippo rolls 3, 2. Pippo moves from 60 to 63. Pippo bounces! Pippo returns to 61"));
@@ -113,12 +113,12 @@ public class GooseGameTest {
     @Test
     public void givenPlayerAtPosition4WhenRoll1and2ThenPlayerMovesToPosition7(){
         gooseGame.AddPlayer("Pippo");
-        dice1.die = 2;
-        dice2.die = 2;
+        dice1.setValue(2);
+        dice2.setValue(2);
         gooseGame.MovePlayer("Pippo");
 
-        dice1.die = 1;
-        dice2.die = 2;
+        dice1.setValue(1);
+        dice2.setValue(2);
         String position = gooseGame.MovePlayer("Pippo");
 
         assertThat(position, Is.is("Pippo rolls 1, 2. Pippo moves from 4 to 7"));
@@ -127,12 +127,12 @@ public class GooseGameTest {
     @Test
     public void givenPlayerAtPosition4WhenRoll1and1ThenPlayerMovesToPosition6AndJumpsToPosition12() {
         gooseGame.AddPlayer("Pippo");
-        dice1.die = 2;
-        dice2.die = 2;
+        dice1.setValue(2);
+        dice2.setValue(2);
         gooseGame.MovePlayer("Pippo");
 
-        dice1.die = 1;
-        dice2.die = 1;
+        dice1.setValue(1);;
+        dice2.setValue(1);;
         String position = gooseGame.MovePlayer("Pippo");
 
         assertThat(position, Is.is("Pippo rolls 1, 1. Pippo moves from 4 to The Bridge. Pippo jumps to 12"));
@@ -141,8 +141,8 @@ public class GooseGameTest {
     @Test
     public void givenNoPlayerWhenRoll2and2ThenError(){
 
-        dice1.die = 2;
-        dice2.die = 2;
+        dice1.setValue(2);
+        dice2.setValue(2);
         String position = gooseGame.MovePlayer("Pluto");
 
         assertThat(position, Is.is("No player named Pluto"));

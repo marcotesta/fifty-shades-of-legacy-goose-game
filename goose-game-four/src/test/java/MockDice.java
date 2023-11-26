@@ -1,13 +1,17 @@
 public class MockDice implements Dice {
 
-    int die;
+    private int value;
 
-    public MockDice(int die) {
-        this.die = die;
+    public MockDice(int value) {
+        this.value = value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 
     @Override
     public int roll() {
-        return this.die;
+        return this.value;
     }
 }
