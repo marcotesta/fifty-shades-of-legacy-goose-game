@@ -37,6 +37,7 @@ public class GooseGame {
     public String MovePlayer(String player) {
         return findPlayer(player)
                 .map(this::movePlayer)
+                .map(PlayerMovement::playerMovementDescription)
                 .orElse("No player named " + player);
     }
 
@@ -44,7 +45,7 @@ public class GooseGame {
         return boards.stream().filter(currentPlayer-> currentPlayer.name.equals(player)).findAny();
     }
 
-    private String movePlayer(Board currentPlayer) {
+    private PlayerMovement movePlayer(Board currentPlayer) {
         int startPosition = currentPlayer.position;
         dice1.roll();
         dice2.roll();
@@ -52,8 +53,7 @@ public class GooseGame {
         int finalPosition = tentativePosition.getFinalPosition();
         currentPlayer.position = finalPosition;
 
-        PlayerMovement playerMovement = new PlayerMovement(currentPlayer.name, dice1.getValue(), dice2.getValue(), startPosition, tentativePosition, finalPosition);
-        return playerMovement.playerMovementDescription();
+        return new PlayerMovement(currentPlayer.name, dice1.getValue(), dice2.getValue(), startPosition, tentativePosition, finalPosition);
     }
 
     private TentativePosition getTentativePosition(int position, int dice1Roll, int dice2Roll) {
